@@ -1,0 +1,369 @@
+**************Numero de clusters: 1
+
+kMeans
+======
+
+Number of iterations: 1
+Within cluster sum of squared errors: 268.9757212425079
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0
+                         (241.0)   (241.0)
+==========================================
+RENDA_FAMILIAR             0.888     0.888
+TIPO_ESCOLA_ORIGEM         0.722     0.722
+ANO_CONCLUSAO_2_GRAU   2008.1909 2008.1909
+RENDA_PER_CAPITA          8.7801    8.7801
+COD_ESTADO_CIVIL          0.1535    0.1535
+N_FILHOS                  0.0083    0.0083
+SEXO                      0.1867    0.1867
+PROFISSAO                 0.2324    0.2324
+DESC_CIDADE               0.3444    0.3444
+INGLES_FALA               0.2905    0.2905
+INGLES_COMPREENSAO        0.3776    0.3776
+INGLES_ESCRITA            0.3444    0.3444
+INGLES_LEITURA            0.4108    0.4108
+ANO_INGRESSO           2013.6971 2013.6971
+IDADE_INGRESSO           23.9378   23.9378
+
+
+
+**************Numero de clusters: 2
+
+kMeans
+======
+
+Number of iterations: 3
+Within cluster sum of squared errors: 214.62502977430535
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1
+                         (241.0)    (41.0)   (200.0)
+====================================================
+RENDA_FAMILIAR             0.888    1.8293     0.695
+TIPO_ESCOLA_ORIGEM         0.722    0.3415       0.8
+ANO_CONCLUSAO_2_GRAU   2008.1909 2009.0732   2008.01
+RENDA_PER_CAPITA          8.7801    9.8049      8.57
+COD_ESTADO_CIVIL          0.1535    0.0732      0.17
+N_FILHOS                  0.0083         0      0.01
+SEXO                      0.1867    0.0244      0.22
+PROFISSAO                 0.2324    0.3171     0.215
+DESC_CIDADE               0.3444    0.3171      0.35
+INGLES_FALA               0.2905    1.4634      0.05
+INGLES_COMPREENSAO        0.3776    1.9756      0.05
+INGLES_ESCRITA            0.3444    1.7805      0.05
+INGLES_LEITURA            0.4108    2.1707      0.05
+ANO_INGRESSO           2013.6971 2013.6829    2013.7
+IDADE_INGRESSO           23.9378   21.8293     24.37
+
+
+
+**************Numero de clusters: 3
+
+kMeans
+======
+
+Number of iterations: 4
+Within cluster sum of squared errors: 173.60506406227074
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2
+                         (241.0)    (38.0)    (52.0)   (151.0)
+==============================================================
+RENDA_FAMILIAR             0.888    1.7368    1.2115    0.5629
+TIPO_ESCOLA_ORIGEM         0.722    0.3684    0.8077    0.7815
+ANO_CONCLUSAO_2_GRAU   2008.1909 2009.9474   2006.75  2008.245
+RENDA_PER_CAPITA          8.7801    9.7895    7.1923    9.0728
+COD_ESTADO_CIVIL          0.1535         0    0.3654    0.1192
+N_FILHOS                  0.0083         0    0.0385         0
+SEXO                      0.1867    0.0263         0    0.2914
+PROFISSAO                 0.2324    0.2632    0.8846         0
+DESC_CIDADE               0.3444    0.3421    0.7885    0.1921
+INGLES_FALA               0.2905       1.5    0.0962     0.053
+INGLES_COMPREENSAO        0.3776    2.0526    0.0962     0.053
+INGLES_ESCRITA            0.3444    1.8421    0.0962     0.053
+INGLES_LEITURA            0.4108    2.2632    0.0962     0.053
+ANO_INGRESSO           2013.6971 2013.7368 2013.3462 2013.8079
+IDADE_INGRESSO           23.9378   20.9474     25.25   24.2384
+
+
+
+**************Numero de clusters: 4
+
+kMeans
+======
+
+Number of iterations: 6
+Within cluster sum of squared errors: 151.0268837276373
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+Cluster 3: 3,1,2007,2,1,0,0,1,1,0,0,0,0,2014,24
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2         3
+                         (241.0)    (38.0)    (34.0)   (136.0)    (33.0)
+========================================================================
+RENDA_FAMILIAR             0.888    1.7368    0.3235    0.3676    2.6364
+TIPO_ESCOLA_ORIGEM         0.722    0.3684    0.7353    0.6471    1.4242
+ANO_CONCLUSAO_2_GRAU   2008.1909 2009.9474 2005.8235 2008.5662 2007.0606
+RENDA_PER_CAPITA          8.7801    9.7895        10        10    1.3333
+COD_ESTADO_CIVIL          0.1535         0    0.2647    0.0588    0.6061
+N_FILHOS                  0.0083         0         0         0    0.0606
+SEXO                      0.1867    0.0263         0    0.2868    0.1515
+PROFISSAO                 0.2324    0.2632         1         0    0.3636
+DESC_CIDADE               0.3444    0.3421    0.5882    0.2132    0.6364
+INGLES_FALA               0.2905       1.5    0.0882    0.0588    0.0606
+INGLES_COMPREENSAO        0.3776    2.0526    0.0882    0.0588    0.0606
+INGLES_ESCRITA            0.3444    1.8421    0.0882    0.0588    0.0606
+INGLES_LEITURA            0.4108    2.2632    0.0882    0.0588    0.0606
+ANO_INGRESSO           2013.6971 2013.7368 2013.1765   2013.75 2013.9697
+IDADE_INGRESSO           23.9378   20.9474   26.4118   23.7132   25.7576
+
+
+
+**************Numero de clusters: 5
+
+kMeans
+======
+
+Number of iterations: 5
+Within cluster sum of squared errors: 122.87263631096141
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+Cluster 3: 3,1,2007,2,1,0,0,1,1,0,0,0,0,2014,24
+Cluster 4: 0,1,2007,10,0,0,0,0,0,0,0,0,0,2013,24
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2         3         4
+                         (241.0)    (38.0)    (34.0)    (44.0)    (28.0)    (97.0)
+==================================================================================
+RENDA_FAMILIAR             0.888    1.7368    0.3235    0.8182    2.5714     0.299
+TIPO_ESCOLA_ORIGEM         0.722    0.3684    0.7353    0.6818    1.3214     0.701
+ANO_CONCLUSAO_2_GRAU   2008.1909 2009.9474 2005.8235 2006.7955   2009.75 2008.5155
+RENDA_PER_CAPITA          8.7801    9.7895        10    9.0909    1.2143        10
+COD_ESTADO_CIVIL          0.1535         0    0.2647    0.2273    0.3571    0.0825
+N_FILHOS                  0.0083         0         0         0    0.0714         0
+SEXO                      0.1867    0.0263         0         1         0         0
+PROFISSAO                 0.2324    0.2632         1         0    0.4286         0
+DESC_CIDADE               0.3444    0.3421    0.5882    0.3409      0.75    0.1443
+INGLES_FALA               0.2905       1.5    0.0882         0    0.0714    0.0825
+INGLES_COMPREENSAO        0.3776    2.0526    0.0882         0    0.0714    0.0825
+INGLES_ESCRITA            0.3444    1.8421    0.0882         0    0.0714    0.0825
+INGLES_LEITURA            0.4108    2.2632    0.0882         0    0.0714    0.0825
+ANO_INGRESSO           2013.6971 2013.7368 2013.1765 2013.9318 2013.7857  2013.732
+IDADE_INGRESSO           23.9378   20.9474   26.4118   25.7045   22.3214   23.9072
+
+
+
+**************Numero de clusters: 6
+
+kMeans
+======
+
+Number of iterations: 6
+Within cluster sum of squared errors: 108.58543567215845
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+Cluster 3: 3,1,2007,2,1,0,0,1,1,0,0,0,0,2014,24
+Cluster 4: 0,1,2007,10,0,0,0,0,0,0,0,0,0,2013,24
+Cluster 5: 0,0,2013,10,0,0,0,0,0,0,0,0,0,2014,18
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2         3         4         5
+                         (241.0)    (38.0)    (34.0)    (44.0)    (28.0)    (48.0)    (49.0)
+============================================================================================
+RENDA_FAMILIAR             0.888    1.7368    0.3235    0.8182    2.5714         0    0.5918
+TIPO_ESCOLA_ORIGEM         0.722    0.3684    0.7353    0.6818    1.3214      0.75    0.6531
+ANO_CONCLUSAO_2_GRAU   2008.1909 2009.9474 2005.8235 2006.7955   2009.75 2005.8958 2011.0816
+RENDA_PER_CAPITA          8.7801    9.7895        10    9.0909    1.2143        10        10
+COD_ESTADO_CIVIL          0.1535         0    0.2647    0.2273    0.3571     0.125    0.0408
+N_FILHOS                  0.0083         0         0         0    0.0714         0         0
+SEXO                      0.1867    0.0263         0         1         0         0         0
+PROFISSAO                 0.2324    0.2632         1         0    0.4286         0         0
+DESC_CIDADE               0.3444    0.3421    0.5882    0.3409      0.75    0.1458    0.1429
+INGLES_FALA               0.2905       1.5    0.0882         0    0.0714         0    0.1633
+INGLES_COMPREENSAO        0.3776    2.0526    0.0882         0    0.0714         0    0.1633
+INGLES_ESCRITA            0.3444    1.8421    0.0882         0    0.0714         0    0.1633
+INGLES_LEITURA            0.4108    2.2632    0.0882         0    0.0714         0    0.1633
+ANO_INGRESSO           2013.6971 2013.7368 2013.1765 2013.9318 2013.7857      2013  2014.449
+IDADE_INGRESSO           23.9378   20.9474   26.4118   25.7045   22.3214   26.2708   21.5918
+
+
+
+**************Numero de clusters: 7
+
+kMeans
+======
+
+Number of iterations: 3
+Within cluster sum of squared errors: 101.18154102254107
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+Cluster 3: 3,1,2007,2,1,0,0,1,1,0,0,0,0,2014,24
+Cluster 4: 0,1,2007,10,0,0,0,0,0,0,0,0,0,2013,24
+Cluster 5: 0,0,2013,10,0,0,0,0,0,0,0,0,0,2014,18
+Cluster 6: 0,0,2013,10,0,0,0,0,0,2,2,2,2,2014,18
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2         3         4         5         6
+                         (241.0)     (8.0)    (34.0)    (44.0)    (18.0)    (58.0)    (49.0)    (30.0)
+======================================================================================================
+RENDA_FAMILIAR             0.888      5.75    0.3235    0.8182    2.8889    0.3448    0.5918    0.6667
+TIPO_ESCOLA_ORIGEM         0.722         0    0.7353    0.6818    0.9444    0.9655    0.6531    0.4667
+ANO_CONCLUSAO_2_GRAU   2008.1909  2005.875 2005.8235 2006.7955    2008.5 2006.9483 2011.0816 2011.0333
+RENDA_PER_CAPITA          8.7801         9        10    9.0909    1.8889    8.2759        10        10
+COD_ESTADO_CIVIL          0.1535         0    0.2647    0.2273    0.5556    0.1034    0.0408         0
+N_FILHOS                  0.0083         0         0         0    0.1111         0         0         0
+SEXO                      0.1867         0         0         1         0         0         0    0.0333
+PROFISSAO                 0.2324         1         1         0    0.6667         0         0    0.0667
+DESC_CIDADE               0.3444     0.125    0.5882    0.3409    1.1667    0.1207    0.1429       0.4
+INGLES_FALA               0.2905     1.875    0.0882         0    0.1111         0    0.1633       1.4
+INGLES_COMPREENSAO        0.3776         2    0.0882         0    0.1111         0    0.1633    2.0667
+INGLES_ESCRITA            0.3444      2.75    0.0882         0    0.1111         0    0.1633       1.6
+INGLES_LEITURA            0.4108     2.875    0.0882         0    0.1111         0    0.1633       2.1
+ANO_INGRESSO           2013.6971      2013 2013.1765 2013.9318 2013.6667 2013.1724  2014.449 2013.9333
+IDADE_INGRESSO           23.9378        25   26.4118   25.7045   23.0556   25.3621   21.5918   19.8667
+
+
+
+**************Numero de clusters: 8
+
+kMeans
+======
+
+Number of iterations: 3
+Within cluster sum of squared errors: 97.93473929809261
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+Cluster 3: 3,1,2007,2,1,0,0,1,1,0,0,0,0,2014,24
+Cluster 4: 0,1,2007,10,0,0,0,0,0,0,0,0,0,2013,24
+Cluster 5: 0,0,2013,10,0,0,0,0,0,0,0,0,0,2014,18
+Cluster 6: 0,0,2013,10,0,0,0,0,0,2,2,2,2,2014,18
+Cluster 7: 0,0,2011,10,0,0,0,0,0,0,0,0,0,2014,20
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2         3         4         5         6         7
+                         (241.0)     (8.0)    (34.0)    (44.0)    (18.0)    (58.0)    (25.0)    (30.0)    (24.0)
+================================================================================================================
+RENDA_FAMILIAR             0.888      5.75    0.3235    0.8182    2.8889    0.3448      0.08    0.6667     1.125
+TIPO_ESCOLA_ORIGEM         0.722         0    0.7353    0.6818    0.9444    0.9655      0.24    0.4667    1.0833
+ANO_CONCLUSAO_2_GRAU   2008.1909  2005.875 2005.8235 2006.7955    2008.5 2006.9483    2012.8 2011.0333 2009.2917
+RENDA_PER_CAPITA          8.7801         9        10    9.0909    1.8889    8.2759        10        10        10
+COD_ESTADO_CIVIL          0.1535         0    0.2647    0.2273    0.5556    0.1034         0         0    0.0833
+N_FILHOS                  0.0083         0         0         0    0.1111         0         0         0         0
+SEXO                      0.1867         0         0         1         0         0         0    0.0333         0
+PROFISSAO                 0.2324         1         1         0    0.6667         0         0    0.0667         0
+DESC_CIDADE               0.3444     0.125    0.5882    0.3409    1.1667    0.1207         0       0.4    0.2917
+INGLES_FALA               0.2905     1.875    0.0882         0    0.1111         0         0       1.4    0.3333
+INGLES_COMPREENSAO        0.3776         2    0.0882         0    0.1111         0         0    2.0667    0.3333
+INGLES_ESCRITA            0.3444      2.75    0.0882         0    0.1111         0         0       1.6    0.3333
+INGLES_LEITURA            0.4108     2.875    0.0882         0    0.1111         0         0       2.1    0.3333
+ANO_INGRESSO           2013.6971      2013 2013.1765 2013.9318 2013.6667 2013.1724   2014.24 2013.9333 2014.6667
+IDADE_INGRESSO           23.9378        25   26.4118   25.7045   23.0556   25.3621     18.44   19.8667    24.875
+
+
+
+**************Numero de clusters: 9
+
+kMeans
+======
+
+Number of iterations: 4
+Within cluster sum of squared errors: 87.1109182622425
+
+Initial starting points (random):
+
+Cluster 0: 6,0,2005,10,0,0,0,1,0,2,2,3,3,2013,26
+Cluster 1: 0,1,1999,10,1,0,0,1,1,0,0,0,0,2013,30
+Cluster 2: 0,0,2007,10,0,0,1,0,0,0,0,0,0,2014,24
+Cluster 3: 3,1,2007,2,1,0,0,1,1,0,0,0,0,2014,24
+Cluster 4: 0,1,2007,10,0,0,0,0,0,0,0,0,0,2013,24
+Cluster 5: 0,0,2013,10,0,0,0,0,0,0,0,0,0,2014,18
+Cluster 6: 0,0,2013,10,0,0,0,0,0,2,2,2,2,2014,18
+Cluster 7: 0,0,2011,10,0,0,0,0,0,0,0,0,0,2014,20
+Cluster 8: 0,1,2008,10,0,0,0,0,0,0,0,0,0,2015,25
+
+Missing values globally replaced with mean/mode
+
+Final cluster centroids:
+                                  Cluster#
+Attribute              Full Data         0         1         2         3         4         5         6         7         8
+                         (241.0)     (8.0)    (34.0)    (44.0)    (18.0)    (48.0)    (32.0)    (30.0)     (8.0)    (19.0)
+==========================================================================================================================
+RENDA_FAMILIAR             0.888      5.75    0.3235    0.8182    2.8889         0    0.0625    0.6667         0    2.4737
+TIPO_ESCOLA_ORIGEM         0.722         0    0.7353    0.6818    0.9444      0.75    0.4063    0.4667         1    1.6316
+ANO_CONCLUSAO_2_GRAU   2008.1909  2005.875 2005.8235 2006.7955    2008.5 2005.8958 2011.9063 2011.0333      2007 2011.8947
+RENDA_PER_CAPITA          8.7801         9        10    9.0909    1.8889        10        10        10        10    4.7368
+COD_ESTADO_CIVIL          0.1535         0    0.2647    0.2273    0.5556     0.125         0         0         0    0.1053
+N_FILHOS                  0.0083         0         0         0    0.1111         0         0         0         0         0
+SEXO                      0.1867         0         0         1         0         0         0    0.0333         0         0
+PROFISSAO                 0.2324         1         1         0    0.6667         0         0    0.0667         0         0
+DESC_CIDADE               0.3444     0.125    0.5882    0.3409    1.1667    0.1458         0       0.4         0    0.3684
+INGLES_FALA               0.2905     1.875    0.0882         0    0.1111         0         0       1.4         1         0
+INGLES_COMPREENSAO        0.3776         2    0.0882         0    0.1111         0         0    2.0667         1         0
+INGLES_ESCRITA            0.3444      2.75    0.0882         0    0.1111         0         0       1.6         1         0
+INGLES_LEITURA            0.4108     2.875    0.0882         0    0.1111         0         0       2.1         1         0
+ANO_INGRESSO           2013.6971      2013 2013.1765 2013.9318 2013.6667      2013 2014.4063 2013.9333      2014 2014.4737
+IDADE_INGRESSO           23.9378        25   26.4118   25.7045   23.0556   26.2708   19.7188   19.8667        24   23.4211
+
+
+
