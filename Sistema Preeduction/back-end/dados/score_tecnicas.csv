@@ -1,0 +1,5 @@
+Curso,Tipo,Tecnica,Score
+eca,aprovado,KNN,0.9359
+eca,evasao,KNN,0.9817
+si,aprovado,KNN,0.9803
+si,evasao,KNN,0.9860
