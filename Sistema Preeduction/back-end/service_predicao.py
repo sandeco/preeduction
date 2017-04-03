@@ -12,10 +12,12 @@ def listarServicos():
        <body>
           <h1>Serviços disponíveis de predição nesta porta:</h1>
           <ul>
-            <li> */curso/matricula/disciplina* para ter a predição se o aluno será aprovado ou nao na disciplina informada. </li>
-            <li> Exemplo: /si/20131011090192/22612 </li>
-            <li> */curso/matricula/evasao* para ter a predição se o aluno irá evadir ou não do curso. </li>
-            <li> Exemplo: /si/20131011090192/evasao </li>
+            <li> */matricula/disciplina* para ter a predição se o aluno será aprovado ou nao na disciplina informada. </li>
+            <li> Exemplo: /20131011090192/22612 </li>
+            <li> */matricula/evasao* para ter a predição se o aluno irá evadir ou não do curso. </li>
+            <li> Exemplo: /20131011090192/evasao </li>
+            <li> */matricula/disciplinas* para ter a lista das disciplinas que um aluno falta cursar. </li>
+            <li> Exemplo: /20131011090192/disciplinas </li>
           </ul>
        </body>
     </html>

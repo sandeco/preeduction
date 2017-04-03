@@ -12,10 +12,10 @@ def listarServicos():
        <body>
           <h1>Serviços disponíveis de distribuição normal nesta porta:</h1>
           <ul>
-            <li> */curso/matricula* para ter todas as informações da distribuição normal do aluno. </li>
-            <li> Exemplo: /si/20131011090192 </li>
-            <li> */curso/matricula/curvanormal* para retornar uma imagem em png com o grafico da curva normal do aluno. </li>
-            <li> Exemplo: e/si/20131011090192/curvanormal </li>
+            <li> */matricula* para ter todas as informações da distribuição normal do aluno. </li>
+            <li> Exemplo: /20131011090192 </li>
+            <li> */matricula/curvanormal* para retornar uma imagem em png com o grafico da curva normal do aluno. </li>
+            <li> Exemplo: /20131011090192/curvanormal </li>
           </ul>
        </body>
     </html>
