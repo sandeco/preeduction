@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Preeduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="static/css/font-awesome.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/pages/dashboard.css" rel="stylesheet">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v1.1.1.min.js"></script>
+
+
+    <link href="static/js/c3.css" rel="stylesheet" type="text/css">
+
+        <script src="static/js/c3.min.js"></script>
+
+    <script src="static/js/liquidFillGauge.js" type="text/javascript"></script>
+    {% block extracss %}{% endblock %}
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+
+        <div class="container"><a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a
+                class="brand" href="/">Pre<span style="color:#00FF00;">eduction</span></a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-user"></i>
+
+                        {% if user is defined %}
+                            {{ user }}
+                        {% endif %}
+
+
+                        <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /navbar-inner -->
+</div>
+<!-- /navbar -->
+<div class="subnavbar">
+  <div class="subnavbar-inner">
+    <div class="container">
+      <form class="navbar-search pull-left" method="POST" action="{{ url_for('dashboard') }}">
+         {{ form.matricula(size=80,placeholder="Digite a matrícula do aluno",class_="search-query",onkeypress="return isNumberKey(event)") }}
+         
+        {{ form.hidden_tag() }}
+          <button class="button btn btn-success"> Pesquisar aluno</button>
+        </form>
+ 	{% if error is defined %}
+            <div style="color:red;margin-top: 15px;float: left;margin-left: 15px;">{{ error }}</div>
+        {% endif %}
+        <div class="button btn btn-primary" style="float:right;margin-top:14px;color:white">  <a style="color: white" href="{{ url_for('alunos') }}">Alunos</a></div>
+        <div class="button btn btn-primary" style="float:right;margin-top:14px;color:white;margin-right:15px">  <a style="color: white" href="{{ url_for('cluster') }}">Clusterização</a></div>
+       
+
+     <div class="span12">
+        {% if not matricula %}
+            <br/>Matriculas de exemplo:
+            <br/>'eca', '20082010700010'
+            <br/>'eca', '20141010700300'
+            <br/>'si', '20141011090246'
+            <br/>'si', '20142011090031'          
+            <br/>'si', '20131011090192'
+        {% endif %}
+     </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- /container -->
+  </div>
+  <!-- /subnavbar-inner -->
+</div>
+
+{% if matricula %}
+    <div class="main">
+  <div class="main-inner">
+    <div class="container">
+      <div class="row">
+
+        <!-- evasão
+        <div class="span6">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> Evasão no curso</h3>
+            </div>
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+
+
+
+
+
+
+
+                    aaaa
+
+
+
+
+                </div>
+
+              </div>
+            </div>
+          </div> -->
+
+
+        <div class="span12">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> Predição de disciplina</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content" style="margin: 15px;">
+                
+                    
+                        Escolher disciplina para predição:
+                        <select class="selectpicker" align="center" id="listadisciplinas">
+                            <option value="" disabled selected>Disciplinas</option>
+                            {% for disciplina in disciplinas %}
+
+                                <option value="{{ disciplina }}">{{ disciplina }}</option>
+
+                            {% endfor %}
+                        </select>
+
+                        <button class="button btn" id="realizarPredicao" value="realizarPredicao">Realizar predição</button>
+
+                        
+
+                    </div>
+                    <div id="resultadoPredicao" class="span12" style="margin: 15px;">
+
+                    
+                </div>
+                <!-- /widget-content -->
+
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+        </div>
+
+        <div class="span12">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> Probabilidade do aluno evadir do curso</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content" style="margin: 15px;">
+                    <div id="gauge"></div>
+
+                    <script>
+
+
+                   var chart = c3.generate({
+                    bindto: "#gauge",
+                    data: {
+                        columns: [
+                            ['Evasão', {{ evasao_score }}]
+                        ],
+                        type: 'gauge',
+                    },
+                    gauge: {
+                        min: 0,
+                        max: 100
+                    },
+                    color: {
+                    pattern: ['#60B044', '#F6C600', '#F97600', '#FF0000'], // the three color levels for the percentage values.
+                            threshold: {
+                    //            unit: 'value', // percentage is default
+                    //            max: 200, // 100 is default
+                                values: [30, 60, 90, 100]
+                            }
+                    }
+                });
+
+
+
+                    </script>
+                    
+                    {% if evasao_cluster|string != "None" %}
+                        <b>Esse aluno foi classificado no grupo com as seguintes características:</b> {{evasao_cluster|safe}}
+                    {% endif %}
+
+                </div>
+                <!-- /widget-content -->
+
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+        </div>
+        
+        
+        <!-- comeco porcentagem disciplina -->
+        <div class="span6">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> Dada qualquer disciplina, probabilidade do aluno ser aprovado</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+
+                    <center>
+                        <svg id="fillgauge1" width="49%" height="250"></svg>
+                    </center>
+
+                </div>
+                <!-- /widget-content -->
+
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+        </div>
+        
+        <div class="span6">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> Dada qualquer disciplina, probabilidade do aluno ser reprovado</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+
+                    <center>
+                        <svg id="fillgauge2" width="49%" height="250"></svg>
+                    </center>
+
+                </div>
+                <!-- /widget-content -->
+
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+        </div>
+        <!-- fim porcentagem disciplina -->
+        
+
+        <!-- /span6 -->
+          <div class="span6">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> Curva normal das probabilidades das notas</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+
+                      {% if novato is undefined %}
+                            <img src="{{ url_for('curvanormal',curso=cursoaluno,matricula=matricula) }}" alt="carregando..." width="97%" height="250"/>
+
+                        {% endif %}
+
+
+                </div>
+                <!-- /widget-content -->
+
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+        </div>
+        <!-- /span6 -->
+          <div class="span6">
+          <div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-flag"></i>
+              <h3> As 5 notas mais prováveis do aluno tirar, dada qualquer disciplina</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+
+                  <div  width="97%" height="250"  id ="chartBar">
+
+                  </div>
+
+
+                </div>
+                <!-- /widget-content  <svg id="visualisation" width="1000" height="500"></svg> -->
+
+              </div>
+            </div>
+          </div>
+          <!-- /widget -->
+
+        </div>
+        <!-- /span6 -->
+        </div>
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /main-inner -->
+</div>
+<!-- /main -->
+
+ {% if aprovado is defined %}
+
+
+
+ <script type="text/javascript">
+
+
+
+                        var porcentagemAprovacao = {{ '%0.2f' %(aprovado[0]|float * 100)}}
+                        var porcentagemReprovacao = {{ '%0.2f' %(reprovado[0]|float * 100)}}
+
+
+
+                        d3.select("#fillgauge1").call(d3.liquidfillgauge,porcentagemAprovacao  , {
+                          circleColor: "#6DA398",
+                          textColor: "#0E5144",
+                          waveTextColor: "#6DA398",
+                          waveColor: "#246D5F",
+                          textSize: 0.75,
+                          textVertPosition: 0.2,
+                          waveAnimateTime: 1000,
+                          backgroundColor: "#ffffff",
+                          valueCountUpAtStart: false,
+                          waveRiseAtStart: false
+                        });
+                         d3.select("#fillgauge2").call(d3.liquidfillgauge, porcentagemReprovacao, {
+                          circleColor: "#FF7777",
+                          textColor: "#FF4444",
+                          waveTextColor: "#FFAAAA",
+                          waveColor: "#FA8072",
+                          textSize: 0.75,
+                          textVertPosition: 0.2,
+                          waveAnimateTime: 1000,
+                          backgroundColor: "#ffffff",
+                          valueCountUpAtStart: false,
+                          waveRiseAtStart: false
+                        });
+
+
+
+
+
+                    </script>
+
+<script>
+var notas = {{probArray|tojson}}
+console.log(notas);
+
+    var svg = dimple.newSvg("#chartBar", 500, 350);
+    var chart = new dimple.chart(svg, notas);
+    var x = chart.addCategoryAxis("x", "Nota");
+    var y =chart.addMeasureAxis("y", "Probabilidade %");
+
+    chart.addSeries(null, dimple.plot.bar);
+
+
+    x.addOrderRule("Nota", false);
+
+    chart.draw();
+
+
+
+</script>
+
+
+
+<!-- Le javascript  {% for lst in probabilidades %}
+                          Prob: {{lst[0]}} - {{lst[1]}}
+                    {% endfor%}
+
+                    Reprovado: {{aprovado[0]|float}}
+                    Outro: ({{'%0.4f' % aprovado[0]|float}}%)
+
+================================================== -->
+
+  {% endif %}
+
+<!-- Placed at the end of the document so the pages load faster -->
+<style type="text/css">
+    .button{
+
+        margin-left: 10px;
+
+    }
+    .label_cur{
+    }
+            .axis path, .axis line
+        {
+            fill: none;
+            stroke: #777;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text
+        {
+            font-family: 'Arial';
+            font-size: 13px;
+        }
+        .tick
+        {
+            stroke-dasharray: 1, 2;
+        }
+        .bar
+        {
+            fill: FireBrick;
+        }
+        .curso{
+            background: red;
+       }
+       .axis path, .axis line {
+    fill: none;
+    stroke: #fff;
+      }
+    .axis text {
+        font-size: 13px;
+      }
+    .bar {
+        fill: #8CD3DD;
+      }
+    .bar:hover {
+        fill: #F56C4E;
+      }
+    svg text.label {
+      fill:white;
+      font: 15px;
+      font-weight: 400;
+      text-anchor: middle;
+    }
+   .axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: #444;
+  stroke-width: 1.5px;
+}
+
+.span12{
+    width:100%;
+}
+
+</style>
+{% endif %}
+<script src="static/js/jquery-1.7.2.min.js"></script>
+<script src="static/js/excanvas.min.js"></script> 
+<script src="static/js/chart.min.js" type="text/javascript"></script> 
+<script src="static/js/bootstrap.js"></script>
+<script language="javascript" type="text/javascript" src="static/js/full-calendar/fullcalendar.min.js"></script>
+
+<script src="static/js/base.js"></script> 
+
+<script>
+    $(document).ready( function() {
+        $('#realizarPredicao').click(function() {
+           $('#resultadoPredicao').html("");
+           var e = document.getElementById("listadisciplinas");
+           var opcao = e.options[e.selectedIndex].value
+           var separar = opcao.split(" -");
+           var disciplina = separar[0]
+           $('#resultadoPredicao').load("predicaodisciplina/{{ matricula }}/"+disciplina);
+        });
+    });
+    function isNumberKey(evt){
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57)){
+            alert("A matrícula deve conter apenas dígitos");
+            return false;
+         }
+         return true;
+      }
+</script>
+
+{% block extrajs %}{% endblock %}
+</body>
+</html>

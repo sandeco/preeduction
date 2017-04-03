@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Preeduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="static/css/font-awesome.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/pages/dashboard.css" rel="stylesheet">
+    <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <script src="static/js/liquidFillGauge.js" type="text/javascript"></script>
+    {% block extracss %}{% endblock %}
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+
+        <div class="container"><a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a
+                class="brand" href="/">Pre<span style="color:#00FF00;">eduction</span></a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-user"></i>
+
+                        {% if user is defined %}
+                            {{ user }}
+                        {% endif %}
+
+
+                        <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /navbar-inner -->
+</div>
+<!-- /navbar -->
+<div class="subnavbar">
+    <div class="subnavbar-inner">
+        <div class="container">
+ <div class=" btn btn-primary" style="float:right;margin-top:14px;color:white">  <a style="color: white" href="{{ url_for('dashboard') }}">Voltar</a></div>
+
+
+        </div>
+
+
+        <!-- /container -->
+    </div>
+    <!-- /subnavbar-inner -->
+</div>
+
+<div class="main">
+    <div class="main-inner">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="widget widget-table action-table">
+                    <div class="widget-header"><i class="icon-th-list"></i>
+                        <h3>Alunos</h3>
+                        <div class="" style="float:right;color:white;margin-right: 10px">
+                            <a href="#myModal" role="button" id="clickModal" class="btn" data-toggle="modal">
+
+                                <i class="icon-plus" style=""></i> Adicionar Aluno
+
+                            </a></div>
+                    </div>
+
+
+                    <!-- /widget-header -->
+                    <div class="widget-content">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th> Matricula</th>
+                                <th> Curso</th>
+                                <th class="td-actions"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for aluno in alunos %}
+                                <tr>
+                                    <td>{{ aluno.MATRICULA }}</td>
+                                    <td> {{ aluno.CURSO }}</td>
+                                    <td class="td-actions"><a href="" data-toggle="modal" class="btn btn-small btn-info" id="edit" onclick="getAluno({{ aluno.MATRICULA }})">
+                                        <i class="btn-icon-only icon-edit"> </i></a>
+
+                                        <a href="" class="btn btn-danger btn-small" onclick="showDialog({{ aluno.MATRICULA }})"><i
+                                            class="btn-icon-only icon-remove"> </i></a>
+
+
+                                    </td>
+
+
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /widget-content -->
+                </div>
+
+                <div class="control-group">
+
+                    <div class="controls">
+
+
+                        <!-- Modal -->
+                        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+
+                                <h3 id="myModalLabel">Cadastrar Novo Aluno</h3>
+
+                                {% if error is defined %}
+                                    <h5 style="font-weight: normal;color: red">{{ error }}</h5>
+                                {% endif %}
+                            </div>
+                            <div class="modal-body">
+                                <form id="edit-profile" class="form-horizontal" action="{{ url_for('alunos') }}"
+                                      method="POST">
+                                    <div class="control-group">
+                                        <label class="control-label" for="matricula">Matricula</label>
+                                        <div class="controls">
+                                            {{ form.matricula(size=80,placeholder="",class_="") }}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+                                    {{ form.hidden_tag() }}
+                                    <div class="control-group">
+                                        <label class="control-label" for="curso">Curso</label>
+                                        <div class="controls">
+                                            {% for subfield in form.curso %}
+                                                {{ subfield (class_="radio inline") }}
+                                                {{ subfield.label }}
+
+                                            {% endfor %}
+                                        </div> <!-- /controls -->
+
+
+                                    </div> <!-- /control-group -->
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="situacao">Situação</label>
+                                        <div class="controls">
+                                            {{ form.sit_matricula(class='') }}
+                                        </div> <!-- /controls -->
+
+
+                                    </div> <!-- /control-group -->
+
+
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="tipo_escola">Escola Origem</label>
+                                        <div class="controls">
+                                            {{ form.tipo_escola(class='') }}
+                                        </div> <!-- /controls -->
+
+
+                                    </div> <!-- /control-group -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="renda_familiar">Renda Familiar</label>
+
+                                        <div class="controls">
+                                                 {{ form.renda_familiar(class='') }}
+
+                                        </div>    <!-- /controls -->
+
+
+                                    </div> <!-- /control-group -->
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="renda_per_capita">Renda Per Capita</label>
+                                        <div class="controls">
+                                                 {{ form.renda_per_capita(class='') }}
+
+                                        </div>    <!-- /controls -->
+                                    </div> <!-- /control-group -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="ano_conclusao_medio">Ano Conclusao 2
+                                            Grau</label>
+                                        <div class="controls">
+                                            {{ form.ano_conclusao_2_grau(size=80,class_="") }}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+                                      <div class="control-group">
+                                        <label class="control-label" for="ano_ingresso">Ano Ingresso</label>
+                                        <div class="controls">
+                                            {{ form.ano_ingresso(size=80,class_="") }}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="estado_civil">Estado Civil</label>
+
+                                        <div class="controls">
+                                            {% for subfield in form.estado_civil %}
+                                                {{ subfield (class_="radio inline") }}
+                                                {{ subfield.label }}
+
+                                            {% endfor %}
+                                        </div> <!-- /controls -->
+
+
+                                    </div> <!-- /control-group -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="n_filhos">Numero filhos</label>
+                                        <div class="controls">
+                                            {{ form.numero_filhos(size=80,class_="") }}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="sexo">Sexo</label>
+
+                                        <div class="controls">
+                                            {% for subfield in form.sexo %}
+                                                {{ subfield (class_="radio inline") }}
+                                                {{ subfield.label }}
+
+                                            {% endfor %}
+                                        </div> <!-- /controls -->
+
+
+                                    </div> <!-- /control-group -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="data_nascimento">Data Nascimento</label>
+                                        <div class="controls">
+                                            {{ form.dt_nascimento(size=80,class_="") }}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="profissao">Profissao</label>
+                                         <div class="controls">
+                                            {% for subfield in form.profissao %}
+                                                {{ subfield (class_="radio inline") }}
+                                                {{ subfield.label }}
+
+                                            {% endfor %}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="cidade">Cidade</label>
+                                       <div class="controls">
+                                            {{ form.cidade(class='') }}
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="idioma">Nivel Inglês (1 a 3)</label>
+                                        <div class="controls" style="width: 500px">
+                                            <div class="nivel">
+                                                Fala {{ form.nivel_fala(size=80,class_="span1") }}
+                                                Compreensao {{ form.nivel_compreensao(size=80,class_="span1") }}
+                                                Leitura {{ form.nivel_leitura(size=80,class_="span1") }}
+                                                Escrita {{ form.nivel_escrita(size=80,class_="span1") }}
+
+
+                                            </div>
+
+                                        </div> <!-- /controls -->
+                                    </div> <!-- /control-group -->
+
+                                    <div class="modal-footer">
+                                        {{ form.submit(class_="btn btn-primary") }}
+
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div> <!-- /controls -->
+                </div> <!-- /control-group -->
+
+
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /main-inner -->
+    </div>
+    <!-- /main -->
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <style type="text/css">
+        .button {
+            height: 34px;
+            margin-top: 8px;
+            margin-left: 10px;
+
+        }
+
+        .label_cur {
+        }
+
+        .axis path, .axis line {
+            fill: none;
+            stroke: #777;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: 'Arial';
+            font-size: 13px;
+        }
+
+        .tick {
+            stroke-dasharray: 1, 2;
+        }
+
+        .bar {
+            fill: FireBrick;
+        }
+
+        .curso {
+            background: red;
+        }
+
+        .axis path, .axis line {
+            fill: none;
+            stroke: #fff;
+        }
+
+        .axis text {
+            font-size: 13px;
+        }
+
+        .bar {
+            fill: #8CD3DD;
+        }
+
+        .bar:hover {
+            fill: #F56C4E;
+        }
+
+        svg text.label {
+            fill: white;
+            font: 15px;
+            font-weight: 400;
+            text-anchor: middle;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .bar {
+            fill: steelblue;
+        }
+
+        .x.axis path {
+            display: none;
+        }
+
+        .line {
+            fill: none;
+            stroke: #444;
+            stroke-width: 1.5px;
+        }
+
+
+    </style>
+
+
+    <script src="static/js/jquery-1.7.2.min.js"></script>
+    <script src="static/js/excanvas.min.js"></script>
+    <script src="static/js/chart.min.js" type="text/javascript"></script>
+    <script src="static/js/bootstrap.js"></script>
+    <script language="javascript" type="text/javascript" src="static/js/full-calendar/fullcalendar.min.js"></script>
+
+    <script src="static/js/base.js"></script>
+
+    <script>
+        var formErrors = {% if error is defined and error!= null %}true{% else %}false{% endif %};
+
+        if (formErrors ){
+            $("#myModal").modal()
+        }
+
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+
+
+
+
+
+        function getAluno(id) {
+
+            $.getJSON($SCRIPT_ROOT + '/getAlunoData', {
+            id: id
+          }, function(data) {
+                $("#myModal").modal()
+                $('#matricula').val(data.result['matricula']);
+                $('#sit_matricula').val(data.result['sit_matricula']);
+                $('#renda_familiar').val(data.result['renda_familiar']);
+                $('#renda_per_capita').val(data.result['renda_per_capita']);
+                $('#ano_conclusao_2_grau').val(data.result['ano_2_grau']);
+                $('#ano_ingresso').val(data.result['ano_ingresso']);
+                $('#tipo_escola').val(data.result['tipo_escola']);
+                $('input:radio[name="estado_civil"]').filter('[value='+data.result['estado_civil']+']').attr('checked', true);
+                $('#numero_filhos').val(data.result['n_filhos']);
+                $('input:radio[name="profissao"]').filter('[value='+data.result['profissao']+']').attr('checked', true);
+                 $('#cidade').val(data.result['cidade']);
+                $('#dt_nascimento').val(data.result['nascimento']);
+                $('#nivel_fala').val(data.result['fala']);
+                $('#nivel_compreensao').val(data.result['compreensao']);
+                $('#nivel_leitura').val(data.result['leitura']);
+                $('#nivel_escrita').val(data.result['escrita']);
+                $('input:radio[name="curso"]').filter('[value='+data.result['curso']+']').attr('checked', true);
+                $('input:radio[name="sexo"]').filter('[value='+data.result['sexo']+']').attr('checked', true);
+                $('#myModalLabel').text("Editar Aluno");
+                $('#edit-profile').attr('action', '/alunos');
+
+          });
+
+
+        }
+
+        function showDialog(id) {
+            if (confirm('Voce tem certeza que deseja remover esse aluno?')) {
+                $.ajax({
+                  url: "/alunos",
+                  type: "get", //send it through get method
+                  data:{id:id},
+                  success: function(response) {
+                    //Do Something
+                  },
+                  error: function(xhr) {
+                    //Do Something to handle error
+                  }
+                });
+            } else {
+            }
+        }
+
+            $.fn.clearForm = function() {
+              return this.each(function() {
+                var type = this.type, tag = this.tagName.toLowerCase();
+                if (tag == 'form')
+                  return $(':input',this).clearForm();
+                if (type == 'text' || type == 'password' || tag == 'textarea')
+                  this.value = '';
+                else if (type == 'checkbox' || type == 'radio')
+                  this.checked = false;
+                else if (tag == 'select')
+                  this.selectedIndex = -1;
+              });
+            };
+
+
+        $("#clickModal").on("click", function(){
+            $('#edit-profile').clearForm();
+        });
+
+
+
+
+    </script>
+    {% block extrajs %}{% endblock %}
+</body>
+</html>
